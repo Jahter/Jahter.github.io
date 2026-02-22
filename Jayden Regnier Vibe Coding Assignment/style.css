@@ -1,0 +1,536 @@
+/* ===================================================================
+   ABC Logistics — Anthropic-inspired, SFU-branded light theme
+   =================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+    /* SFU Brand */
+    --sfu-red: #CC0633;
+    --sfu-red-hover: #A30529;
+    --sfu-red-light: rgba(204, 6, 51, 0.08);
+
+    /* Palette */
+    --bg: #FAFAF8;
+    --bg-card: #FFFFFF;
+    --border: #E8E5E0;
+    --border-light: #F0EDE8;
+
+    /* Typography */
+    --text-primary: #191919;
+    --text-secondary: #6B6B6B;
+    --text-tertiary: #9B9B9B;
+    --text-error: #CC0633;
+
+    /* Fonts */
+    --font-serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+    /* Misc */
+    --radius: 12px;
+    --transition: 200ms ease;
+}
+
+/* ── Reset ──────────────────────────────────────── */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-sans);
+    background: var(--bg);
+    color: var(--text-primary);
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Navigation ─────────────────────────────────── */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 6%;
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.logo-icon {
+    width: 8px;
+    height: 28px;
+    background-color: var(--sfu-red);
+    border-radius: 2px;
+    display: inline-block;
+}
+
+.logo h1 {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.3px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: color var(--transition);
+    position: relative;
+    padding-bottom: 4px;
+}
+
+.nav-links a:hover {
+    color: var(--text-primary);
+}
+
+.nav-links a.active {
+    color: var(--text-primary);
+}
+
+.nav-links a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--sfu-red);
+    border-radius: 1px;
+}
+
+/* ── Layout ─────────────────────────────────────── */
+.dashboard-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3.5rem 6%;
+}
+
+.dashboard-header {
+    margin-bottom: 3rem;
+}
+
+.dashboard-header h2 {
+    font-family: var(--font-serif);
+    font-size: 2.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -1px;
+    line-height: 1.15;
+    margin-bottom: 0.5rem;
+}
+
+.dashboard-header p {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    max-width: 480px;
+}
+
+/* ── Grid ───────────────────────────────────────── */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    grid-template-areas:
+        "input chart"
+        "input list"
+        "input list";
+    gap: 1.75rem;
+}
+
+/* ── Cards ──────────────────────────────────────── */
+.glass-panel {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    transition: box-shadow var(--transition);
+}
+
+.glass-panel:hover {
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+}
+
+/* ── Form Section ───────────────────────────────── */
+.input-section {
+    grid-area: input;
+    align-self: start;
+}
+
+.input-section h3 {
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1.75rem;
+}
+
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.7rem 0.85rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    font-family: inherit;
+    transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--sfu-red);
+    box-shadow: 0 0 0 3px var(--sfu-red-light);
+}
+
+.form-group input::placeholder {
+    color: var(--text-tertiary);
+}
+
+.error-msg {
+    display: block;
+    color: var(--text-error);
+    font-size: 0.78rem;
+    margin-top: 0.35rem;
+    min-height: 1.1em;
+}
+
+.form-group input.invalid {
+    border-color: var(--text-error);
+    background: rgba(204, 6, 51, 0.03);
+}
+
+/* ── Buttons ────────────────────────────────────── */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.7rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--transition);
+    border: none;
+    font-family: inherit;
+    width: 100%;
+}
+
+.btn-primary {
+    background: var(--sfu-red);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: var(--sfu-red-hover);
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+}
+
+.btn-outline-danger {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    width: auto;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.8rem;
+}
+
+.btn-outline-danger:hover {
+    border-color: var(--sfu-red);
+    color: var(--sfu-red);
+    background: var(--sfu-red-light);
+}
+
+/* ── Chart ──────────────────────────────────────── */
+.chart-section {
+    grid-area: chart;
+    min-height: 340px;
+    display: flex;
+    flex-direction: column;
+}
+
+.chart-container {
+    position: relative;
+    flex-grow: 1;
+    width: 100%;
+    min-height: 240px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.section-header h3 {
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* ── Toggle Group ───────────────────────────────── */
+.toggle-group {
+    display: flex;
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.toggle-btn {
+    padding: 0.35rem 0.85rem;
+    font-size: 0.78rem;
+    font-weight: 500;
+    font-family: inherit;
+    background: transparent;
+    color: var(--text-secondary);
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition);
+}
+
+.toggle-btn+.toggle-btn {
+    border-left: 1px solid var(--border);
+}
+
+.toggle-btn.active {
+    background: var(--sfu-red);
+    color: #fff;
+}
+
+.toggle-btn:not(.active):hover {
+    background: var(--sfu-red-light);
+    color: var(--text-primary);
+}
+
+/* ── Table ──────────────────────────────────────── */
+.list-section {
+    grid-area: list;
+    min-height: 200px;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+.inventory-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.inventory-table th {
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.inventory-table td {
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid var(--border-light);
+    font-size: 0.92rem;
+    color: var(--text-primary);
+}
+
+.inventory-table tbody tr {
+    transition: background var(--transition);
+}
+
+.inventory-table tbody tr:hover {
+    background: var(--bg);
+}
+
+.td-val {
+    font-variant-numeric: tabular-nums;
+    font-weight: 500;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--text-tertiary);
+}
+
+/* ── Delete Button ──────────────────────────────── */
+.btn-delete {
+    background: transparent;
+    border: none;
+    color: var(--text-tertiary);
+    cursor: pointer;
+    font-size: 1rem;
+    transition: color var(--transition);
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+}
+
+.btn-delete:hover {
+    color: var(--sfu-red);
+}
+
+/* ── About Page ─────────────────────────────────── */
+.about-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 80px);
+    padding: 4rem 6%;
+}
+
+.profile-section {
+    max-width: 520px;
+    width: 100%;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    text-align: center;
+}
+
+.profile-section:hover {
+    box-shadow: none;
+}
+
+.profile-header {
+    margin-bottom: 2.5rem;
+}
+
+.profile-header h2 {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.5px;
+}
+
+.profile-avatar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.75rem;
+}
+
+.profile-image {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--border);
+}
+
+.profile-details {
+    text-align: center;
+}
+
+.profile-details h3 {
+    font-family: var(--font-serif);
+    font-size: 1.65rem;
+    font-weight: 600;
+    margin-bottom: 0.15rem;
+    color: var(--text-primary);
+    letter-spacing: -0.3px;
+}
+
+.profile-details .title {
+    color: var(--sfu-red);
+    font-weight: 500;
+    font-size: 0.92rem;
+    margin-bottom: 1.5rem;
+}
+
+.profile-details .bio {
+    line-height: 1.7;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+}
+
+.tech-stack h4 {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.85rem;
+    font-weight: 500;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    justify-content: center;
+}
+
+.tag {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 0.3rem 0.7rem;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    transition: all var(--transition);
+}
+
+.tag:hover {
+    border-color: var(--sfu-red);
+    color: var(--sfu-red);
+}
+
+/* ── Responsive ─────────────────────────────────── */
+@media (max-width: 992px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "input"
+            "chart"
+            "list";
+    }
+
+    .dashboard-header h2 {
+        font-size: 2rem;
+    }
+}
